@@ -48,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile
+          file: ${{env.DOCKERFILE}}
           push: false
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:next
@@ -62,7 +62,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: $DOCKERFILE
+          file: ${{env.DOCKERFILE}}
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:next
@@ -78,7 +78,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: $DOCKERFILE
+          file: ${{env.DOCKERFILE}}
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:latest
