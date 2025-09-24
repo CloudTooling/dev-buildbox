@@ -1,0 +1,62 @@
+FROM debian:13-slim
+
+ARG TARGETARCH
+ARG BUILD_DATE
+
+ENV BUILD_DATE $BUILD_DATE
+
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+
+# renovate: datasource=pypi depName=yamale
+ARG YAMALE_VERSION=6.0.0
+
+# renovate: datasource=github-tag depName=mikefarah/yq extractVersion=^v(?<version>.*)$
+ARG YQ_VERSION=4.40.4
+
+# renovate: datasource=pypi depName=yamllint
+ARG YAMLLINT_VERSION=1.37.1
+
+# renovate: datasource=github-tags depName=koalaman/shellcheck extractVersion=^v(?<version>.*)$
+ARG SHELLCHECK_VERSION="0.11.0"
+
+# update first
+RUN apt-get update -y &&\
+  # upgrade
+  apt-get upgrade -y && \
+  # clean up to slim image
+  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+# Base tools
+RUN apt-get update -y && \
+  apt-get install -y gnupg curl lsb-release && \
+  echo "deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware" > /etc/apt/sources.list.d/custom.list && \
+  apt-get update -y &&\
+  apt-get install -y wget zip ruby-full git dos2unix apt-transport-https ca-certificates gnupg2 &&\
+  # Adding python
+  apt-get install -y python3 python3-dev python3-pytest python3-pip &&\
+  # Default to python 3
+  update-alternatives --install /usr/bin/python python /usr/bin/python3 1 &&\
+  update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1 &&\
+  # install pip tools
+  pip install "yamale==$YAMALE_VERSION" "yamllint==$YAMLLINT_VERSION" ansible-lint &&\
+  # install shellcheck
+  case "${TARGETARCH}" in \
+    "amd64") ARCH="x86_64" ;; \
+    "arm64") ARCH="aarch64" ;; \
+    *) echo "Unsupported arch: ${TARGETARCH}" && exit 1 ;; \
+  esac && \
+  wget https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.${ARCH}.tar.xz -O- | tar xJvf - shellcheck-v$SHELLCHECK_VERSION/shellcheck && \
+  mv shellcheck-v$SHELLCHECK_VERSION/shellcheck /bin && \
+  rmdir shellcheck-v$SHELLCHECK_VERSION/ &&\
+  # install jq
+  apt-get install -y jq &&\
+  # install yq
+  export ARCH="linux_${TARGETARCH}"  &&\
+  wget https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_${ARCH} -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq && \
+  # clean up to slim image
+  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+# Add custom entrypoint
+ADD --chown=root:root src/docker/entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["entrypoint.sh"]
