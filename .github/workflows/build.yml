@@ -56,6 +56,7 @@ jobs:
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
           platforms: linux/amd64,linux/arm64
+        if: github.ref != 'refs/heads/develop' && github.ref_type != 'tag'
 
       - name: Push To Docker Hub
         id: push-to-dockerhub-preview
@@ -70,7 +71,7 @@ jobs:
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
         if: github.ref == 'refs/heads/develop'
 
       - name: Push To Docker Hub
@@ -86,7 +87,7 @@ jobs:
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.BRANCH}}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
         if: github.ref_type == 'tag' || github.tag != ''
   Container:
     name: Build Container Image
