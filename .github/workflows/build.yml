@@ -83,7 +83,7 @@ jobs:
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:latest
-            ${{env.DOCKER_IMAGE_NAME}}:${{env.BRANCH}}
+            ${{env.DOCKER_IMAGE_NAME}}:${{env.APP_VERSION}}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.BRANCH}}

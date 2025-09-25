@@ -1,0 +1,140 @@
+name: Create base image release
+on:
+  workflow_dispatch:
+    inputs:
+      releaseversion:
+        description: 'Release version'
+        required: false
+        type: string
+        default: 'X.Y.Z'
+  schedule:
+      # Run weekly on wednesday
+      -   cron: '30 1 * * 3'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.CI_APP_ID }}
+          private-key: ${{ secrets.CI_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+          ref: ${{ github.head_ref }}
+
+      - name: Get GitHub App User ID
+        id: get-user-id
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Configure Git author
+        run: |
+          git config --global user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
+          git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com>'
+
+      - name: Update Base
+        run: |
+          # Increment a version string using Semantic Versioning (SemVer) terminology.
+          # Parse command line options.
+          # Source: https://github.com/fmahnke/shell-semver
+          #
+          # usage: increment_version.sh [-Mmp] major.minor.patch
+          increment_version() {
+            while getopts ":Mmp" Option
+            do
+              case $Option in
+                M ) major=true;;
+                m ) minor=true;;
+                p ) patch=true;;
+                * ) patch=true;;
+              esac
+            done
+
+            # shellcheck disable=SC2004,SC2206
+            shift $(($OPTIND - 1))
+
+            version=$1
+
+            # Build array from version string.
+            # shellcheck disable=SC2206
+            a=( ${version//./ } )
+            # If version string is missing or has the wrong number of members, show usage message.
+            if [ ${#a[@]} -ne 3 ]
+            then
+              echo "usage: $(basename $0) [-Mmp] major.minor.patch"
+              exit 1
+            fi
+
+            # Increment version numbers as requested.
+
+            if [ -n "$major" ]
+            then
+              ((a[0]++))
+              a[1]=0
+              a[2]=0
+            fi
+
+            if [ -n "$minor" ]
+            then
+              ((a[1]++))
+              a[2]=0
+            fi
+
+            if [ -n "$patch" ]
+            then
+              ((a[2]++))
+            fi
+
+            echo "${a[0]}.${a[1]}.${a[2]}"
+          }
+
+          increment_patch_version() {
+            increment_version -p "$1"
+          }
+          version=${{ inputs.releaseversion }}
+          if [[ "$version" == "X.Y.Z" ]]; then
+            increment_patch_version $version
+            version=$(jq ".version" config_base.json -r)
+          fi
+
+          echo "Starting Base Docker release finish for ${version}"
+          BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
+          /bin/cat <<EOM >>$GITHUB_ENV
+          VERSION=$APP_VERSION
+          APP_VERSION=$version
+          BUILD_DATE=$BUILD_DATE
+          EOM
+
+      - name: Push To Docker Hub
+        id: push-to-dockerhub-preview
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile.base
+          push: true
+          tags: |
+            cloudtooling/dev-buildbox-base:${{env.APP_VERSION}}
+          build-args: |
+            BUILD_DATE=${{env.BUILD_DATE}}
+            APP_VERSION=${{env.APP_VERSION}}
+          platforms: linux/amd64,linux/arm64
+
+      - name: Push changes
+        run: |
+          git add .
+          git commit -m "Update Base Image to ${RELEASE_VERSION}"
+          git push origin $CI_DEFAULT_BRANCH
+          git push --tags
