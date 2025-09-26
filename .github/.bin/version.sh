@@ -63,7 +63,9 @@ increment_patch_version() {
 
 if [[ "$version" == "X.Y.Z" ]]; then
   version=$(jq ".version" $configFile -r)
-  increment_patch_version $version
+  newVersion=$(increment_patch_version $version)
 fi
 
-echo "Starting Base Docker release finish for ${version}"
+echo "Starting Base Docker release finish for ${newVersion}"
+
+export version=$newVersion

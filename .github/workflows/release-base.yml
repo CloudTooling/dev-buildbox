@@ -50,12 +50,12 @@ jobs:
 
       - name: Update Base
         run: |
-          .github/.bin/version.sh "config_base.json" "${{ inputs.releaseversion }}"
+          . .github/.bin/version.sh "config_base.json" "${{ inputs.releaseversion }}"
 
           echo "Starting Base Docker release finish for ${version}"
           BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
           /bin/cat <<EOM >>$GITHUB_ENV
-          VERSION=$APP_VERSION
+          VERSION=$version
           APP_VERSION=$version
           BUILD_DATE=$BUILD_DATE
           EOM
