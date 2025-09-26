@@ -85,7 +85,8 @@ jobs:
 
       - name: Push changes
         run: |
+          echo "{\"version\":\"${{env.APP_VERSION}}\"}" | jq > config_base.json
           git add .
-          git commit -m "Update Base Image to ${RELEASE_VERSION}"
+          git commit -m "Update Base Image to ${{env.APP_VERSION}}"
           git push origin $CI_DEFAULT_BRANCH
           git push --tags
