@@ -106,8 +106,8 @@ jobs:
           }
           version=${{ inputs.releaseversion }}
           if [[ "$version" == "X.Y.Z" ]]; then
-            increment_patch_version $version
             version=$(jq ".version" config_base.json -r)
+            increment_patch_version $version
           fi
 
           echo "Starting Base Docker release finish for ${version}"
