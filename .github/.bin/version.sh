@@ -61,7 +61,7 @@ increment_patch_version() {
   increment_version -p "$1"
 }
 
-if [[ "$version" == "X.Y.Z" ]]; then
+if [[ "$version" == "X.Y.Z" || "$version" == "" ]]; then
   version=$(jq ".version" $configFile -r)
   newVersion=$(increment_patch_version $version)
 fi
