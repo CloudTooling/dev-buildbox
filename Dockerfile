@@ -4,7 +4,7 @@ ARG JDK17_VERSION=17.0.16_8-jdk
 FROM eclipse-temurin:$JDK17_VERSION as jdk17
 FROM eclipse-temurin:21.0.8_9-jdk as jdk21
 FROM ghcr.io/helmfile/helmfile:v1.1.7 as helmfile
-FROM gitlab/glab:v1.72.0 as glab-cli
+FROM gitlab/glab:v1.74.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.0
 
