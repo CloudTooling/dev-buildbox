@@ -36,8 +36,8 @@ ARG GCR_TOOLS_VERSION="0.20.6"
 # renovate: datasource=github-tags depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
 ARG KUBECTL_VERSION="1.34.1"
 
-# TODO: Use renovate to extract
-ARG NODE_MAJOR_VERSION="20"
+# renovate: datasource=docker depName=node
+ARG NODE_MAJOR_VERSION="24.13.0"
 
 # renovate: datasource=github-tags depName=nvm-sh/nvm
 ARG NVM_VERSION="0.40.3"
@@ -57,6 +57,11 @@ COPY --from=jdk17 /opt/java/openjdk $JAVA_17_HOME
 # Add JDK 21
 RUN mkdir -p $JAVA_21_HOME
 COPY --from=jdk21 /opt/java/openjdk $JAVA_21_HOME
+
+# Create a script file sourced by both interactive and non-interactive bash shells
+ENV BASH_ENV /root/.bash_env
+RUN touch "${BASH_ENV}"
+RUN echo '. "${BASH_ENV}"' >> ~/.bashrc
 
 # Base tools
 RUN apt-get update -y &&\
@@ -87,20 +92,14 @@ RUN apt-get update -y &&\
   # clean up to slim image
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-# Add NodeJS
-RUN mkdir -p /etc/apt/keyrings &&\
-  # Download the new repository's GPG key and save it in the keyring directory
-  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg &&\
-  # Add the new repository's source list with its GPG key for package verification
-  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR_VERSION}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list &&\
-  apt-get update && apt-get install -y nodejs && npm install -g yarn &&\
+# Add NodeJS & nvm
+RUN cd ~ &&\ 
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | PROFILE="${BASH_ENV}" bash  &&\
+  . ~/.nvm/nvm.sh && echo node > .nvmrc && nvm install ${NODE_MAJOR_VERSION} && \
+  # install changelog cli, yarn & json lint
+  npm install -g conventional-changelog-cli jsonlint yarn &&\
   # nx cli
   npm add --global nx@latest &&\
-  # install changelog cli & json lint
-  npm install -g conventional-changelog-cli jsonlint &&\
-  # nvm
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash  &&\
-  . ~/.nvm/nvm.sh && nvm install v20 && \
   # clean up to slim image
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
