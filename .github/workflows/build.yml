@@ -54,6 +54,7 @@ jobs:
           push: false
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:next
+            ${{env.DOCKER_IMAGE_NAME}}:${{ github.run_id }}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
@@ -69,12 +70,13 @@ jobs:
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:next
-            ${{env.DOCKER_IMAGE_NAME}}:${{env.APP_VERSION}}_rc
+            ${{env.DOCKER_IMAGE_NAME}}:${{ github.run_id }}
+            ${{env.DOCKER_IMAGE_NAME}}:${{ env.APP_VERSION }}_rc
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
           platforms: linux/amd64,linux/arm64
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref != 'refs/heads/develop' && github.ref_type != 'tag'
 
       - name: Push To Docker Hub
         id: push-to-dockerhub-tagged
@@ -85,8 +87,8 @@ jobs:
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:latest
-            ${{env.DOCKER_IMAGE_NAME}}:next
-            ${{env.DOCKER_IMAGE_NAME}}:${{env.APP_VERSION}}
+            ${{env.DOCKER_IMAGE_NAME}}:${{ github.run_id }}
+            ${{env.DOCKER_IMAGE_NAME}}:${{ env.APP_VERSION }}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.BRANCH}}
@@ -105,7 +107,7 @@ jobs:
     name: End2End Testing
     if: ${{ always() }}
     runs-on: ubuntu-latest
-    container: cloudtooling/dev-buildbox:next
+    container: cloudtooling/dev-buildbox:${{ github.run_id }}
     needs:
       - Base-Container
       - Container
