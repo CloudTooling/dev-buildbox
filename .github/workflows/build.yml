@@ -122,6 +122,13 @@ jobs:
         id: setup-bats
         uses: bats-core/bats-action@3.0.1
 
+      - name: Run BATS tests
+        shell: bash
+        env:
+          BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
+          TERM: xterm
+        run: test/shell/.bin/run-tests.sh
+
   Build-results:
     name: Build results
     if: ${{ always() }}
