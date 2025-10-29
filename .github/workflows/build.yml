@@ -53,13 +53,15 @@ jobs:
           file: ${{env.DOCKERFILE}}
           push: false
           tags: |
+            ${{env.DOCKER_IMAGE_NAME}}:latest
             ${{env.DOCKER_IMAGE_NAME}}:next
             ${{env.DOCKER_IMAGE_NAME}}:${{ github.run_id }}
+            ${{env.DOCKER_IMAGE_NAME}}:${{ env.APP_VERSION }}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
           platforms: linux/amd64,linux/arm64
-        if: github.ref != 'refs/heads/develop' && github.ref_type != 'tag'
+        if: github.ref_type != 'tag'
 
       - name: Push To Docker Hub
         id: push-to-dockerhub-preview
@@ -71,12 +73,11 @@ jobs:
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:next
             ${{env.DOCKER_IMAGE_NAME}}:${{ github.run_id }}
-            ${{env.DOCKER_IMAGE_NAME}}:${{ env.APP_VERSION }}_rc
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
             APP_VERSION=${{env.APP_VERSION}}
           platforms: linux/amd64,linux/arm64
-        if: github.ref != 'refs/heads/develop' && github.ref_type != 'tag'
+        if: github.ref_type != 'tag'
 
       - name: Push To Docker Hub
         id: push-to-dockerhub-tagged
