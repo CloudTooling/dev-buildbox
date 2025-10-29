@@ -85,6 +85,7 @@ jobs:
           push: true
           tags: |
             ${{env.DOCKER_IMAGE_NAME}}:latest
+            ${{env.DOCKER_IMAGE_NAME}}:next
             ${{env.DOCKER_IMAGE_NAME}}:${{env.APP_VERSION}}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
@@ -100,6 +101,27 @@ jobs:
       VERSION_FILE: config.json
     steps: *container-build
 
+  End2End-Tests:
+    name: End2End Testing
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    container: cloudtooling/dev-buildbox:next
+    needs:
+      - Base-Container
+      - Container
+    steps: &container-build
+      - uses: actions/checkout@v5
+
+      - name: Setup Environment
+        id: setup-env
+        run: |
+          apt-get update
+          apt-get install -y sudo
+
+      - name: Setup Bats and bats libs
+        id: setup-bats
+        uses: bats-core/bats-action@3.0.1
+
   Build-results:
     name: Build results
     if: ${{ always() }}
@@ -107,6 +129,7 @@ jobs:
     needs:
       - Base-Container
       - Container
+      - End2End-Tests
     steps:
       - run: exit 1
         # see https://stackoverflow.com/a/67532120/4907315
