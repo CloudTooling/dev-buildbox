@@ -133,7 +133,7 @@ jobs:
         run: test/shell/.bin/run-tests.sh
 
       - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v5
+        uses: mikepenz/action-junit-report@v6
         # always run even if the previous step fails
         if: success() || failure()
         with:
