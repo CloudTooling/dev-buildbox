@@ -63,7 +63,7 @@ jobs:
           create-summary: true
           skip-bump: true
           skip-tag: true
-          skip-on-empty: false
+          skip-on-empty: true
           tag-prefix: 'v'
 
       - name: Create Release on GH
