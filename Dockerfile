@@ -6,7 +6,7 @@ FROM eclipse-temurin:21.0.9_10-jdk as jdk21
 FROM ghcr.io/helmfile/helmfile:v1.1.9 as helmfile
 FROM gitlab/glab:v1.77.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
-FROM cloudtooling/dev-buildbox-base:0.1.6
+FROM cloudtooling/dev-buildbox-base:0.1.7
 
 ARG BUILD_DATE
 ENV BUILD_DATE $BUILD_DATE
