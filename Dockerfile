@@ -3,6 +3,7 @@ ARG JDK17_VERSION=17.0.17_10-jdk
 
 FROM eclipse-temurin:$JDK17_VERSION as jdk17
 FROM eclipse-temurin:21.0.9_10-jdk as jdk21
+FROM bats/bats:1.12.0 as bats-cli
 FROM ghcr.io/helmfile/helmfile:v1.1.9 as helmfile
 FROM gitlab/glab:v1.77.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
@@ -97,4 +98,11 @@ ADD --chown=root:root src/docker/entrypoint.sh /usr/local/bin/
 
 # Copy Glab CLI
 COPY --from=glab-cli /usr/bin/glab /usr/local/bin/glab
+
+# Copy Helmfile CLI
 COPY --from=helmfile /usr/local/bin/helmfile /usr/local/bin/helmfile
+
+# Copy bats
+COPY --from=bats-cli /usr/local/bin/bats /usr/local/bin/bats
+COPY --from=bats-cli /opt/bats/libexec/bats-core /usr/local/libexec/bats-core
+COPY --from=bats-cli /opt/bats/lib/bats-core /usr/local/lib/bats-core
