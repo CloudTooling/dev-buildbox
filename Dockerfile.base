@@ -8,7 +8,7 @@ ENV BUILD_DATE $BUILD_DATE
 ENV PIP_BREAK_SYSTEM_PACKAGES 1
 
 # renovate: datasource=pypi depName=yamale
-ARG YAMALE_VERSION=6.0.0
+ARG YAMALE_VERSION=6.1.0
 
 # renovate: datasource=github-tag depName=mikefarah/yq extractVersion=^v(?<version>.*)$
 ARG YQ_VERSION=4.40.4
