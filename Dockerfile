@@ -10,7 +10,18 @@ FROM jnorwood/helm-docs:v1.14.2 as helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.17
 
 ARG BUILD_DATE
-ENV BUILD_DATE $BUILD_DATE
+ARG IMAGE_VERSION
+
+LABEL org.opencontainers.image.authors='Martin Reinhardt (martin@m13t.de)' \
+    org.opencontainers.image.created=$BUILD_DATE \
+    org.opencontainers.image.version=$IMAGE_VERSION \
+    org.opencontainers.image.url='https://github.com/CloudTooling/dev-buildbox' \
+    org.opencontainers.image.documentation='https://github.com/CloudTooling/dev-buildbox' \
+    org.opencontainers.image.source='https://github.com/CloudTooling/dev-buildbox.git' \
+    org.opencontainers.image.licenses='MIT'
+
+ENV BUILD_DATE=$BUILD_DATE
+ENV IMAGE_VERSION=$IMAGE_VERSION
 
 ENV PIP_BREAK_SYSTEM_PACKAGES 1
 ENV JAVA_17_HOME /opt/java/openjdk17

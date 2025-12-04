@@ -63,7 +63,7 @@ jobs:
           BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
           /bin/cat <<EOM >>$GITHUB_ENV
           VERSION=$version
-          APP_VERSION=$version
+          IMAGE_VERSION=$version
           BUILD_DATE=$BUILD_DATE
           EOM
 
@@ -76,16 +76,16 @@ jobs:
           push: true
           tags: |
             cloudtooling/dev-buildbox-base:latest
-            cloudtooling/dev-buildbox-base:${{env.APP_VERSION}}
+            cloudtooling/dev-buildbox-base:${{env.IMAGE_VERSION}}
           build-args: |
             BUILD_DATE=${{env.BUILD_DATE}}
-            APP_VERSION=${{env.APP_VERSION}}
+            IMAGE_VERSION=${{env.IMAGE_VERSION}}
           platforms: linux/amd64,linux/arm64
 
       - name: Push changes
         run: |
-          echo "{\"version\":\"${{env.APP_VERSION}}\"}" | jq > config_base.json
+          echo "{\"version\":\"${{env.IMAGE_VERSION}}\"}" | jq > config_base.json
           git add .
-          git commit -m "Update Base Image to ${{env.APP_VERSION}}"
+          git commit -m "Update Base Image to ${{env.IMAGE_VERSION}}"
           git push origin $CI_DEFAULT_BRANCH
           git push --tags
