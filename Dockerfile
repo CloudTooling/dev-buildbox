@@ -1,5 +1,5 @@
 # renovate: datasource=docker depName=eclipse-temurin allowedVersions=<18.0.0
-ARG JDK17_VERSION=17.0.17_10-jdk
+ARG JDK17_VERSION=17.0.18_8-jdk
 
 FROM eclipse-temurin:$JDK17_VERSION as jdk17
 FROM eclipse-temurin:21.0.10_7-jdk as jdk21
