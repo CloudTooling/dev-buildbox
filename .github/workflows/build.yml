@@ -123,7 +123,7 @@ jobs:
 
       - name: Setup Bats and bats libs
         id: setup-bats
-        uses: bats-core/bats-action@3.0.1
+        uses: bats-core/bats-action@4.0.0
 
       - name: Run BATS tests
         shell: bash
