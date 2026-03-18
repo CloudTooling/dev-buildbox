@@ -42,14 +42,6 @@ ARG NODE_MAJOR_VERSION="20"
 # renovate: datasource=github-tags depName=nvm-sh/nvm
 ARG NVM_VERSION="0.40.3"
 
-# update first
-RUN apt-get update -y &&\
-  # upgrade
-  apt-get upgrade -y && \
-  # clean up to slim image
-  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-
 # Add JDK 17
 RUN mkdir -p $JAVA_17_HOME
 COPY --from=jdk17 /opt/java/openjdk $JAVA_17_HOME
@@ -118,3 +110,10 @@ COPY --from=helmfile /usr/local/bin/helmfile /usr/local/bin/helmfile
 COPY --from=bats-cli /usr/local/bin/bats /usr/local/bin/bats
 COPY --from=bats-cli /opt/bats/libexec/bats-core /usr/local/libexec/bats-core
 COPY --from=bats-cli /opt/bats/lib/bats-core /usr/local/lib/bats-core
+
+# update
+RUN apt-get update -y &&\
+  # upgrade
+  apt-get upgrade -y && \
+  # clean up to slim image
+  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/

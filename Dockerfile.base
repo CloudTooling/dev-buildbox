@@ -29,13 +29,6 @@ ARG YAMLLINT_VERSION=1.38.0
 # renovate: datasource=github-tags depName=koalaman/shellcheck extractVersion=^v(?<version>.*)$
 ARG SHELLCHECK_VERSION="0.11.0"
 
-# update first
-RUN apt-get update -y &&\
-  # upgrade
-  apt-get upgrade -y && \
-  # clean up to slim image
-  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
-
 # Base tools
 RUN apt-get update -y && \
   apt-get install -y gnupg curl lsb-release && \
@@ -68,5 +61,12 @@ RUN apt-get update -y && \
 
 # Add custom entrypoint
 ADD --chown=root:root src/docker/entrypoint.sh /usr/local/bin/
+
+# update
+RUN apt-get update -y &&\
+  # upgrade
+  apt-get upgrade -y && \
+  # clean up to slim image
+  apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ENTRYPOINT ["entrypoint.sh"]
