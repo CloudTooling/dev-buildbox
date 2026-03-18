@@ -72,6 +72,7 @@ RUN apt-get update -y &&\
   helm plugin install https://github.com/jkroepke/helm-secrets &&\
   helm plugin install https://github.com/hypnoglow/helm-s3 &&\
   helm plugin install https://github.com/aslafy-z/helm-git &&\
+  helm plugin install https://github.com/helm-unittest/helm-unittest.git &&\
   # Adding Maven
   apt install -y maven &&\
   # install ansible
