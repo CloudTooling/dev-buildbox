@@ -19,3 +19,13 @@
   run java -version
   [ "$status" -eq 0 ]
 }
+
+@test "should have JAVA_HOME set to JDK 17" {
+  [ -n "$JAVA_HOME" ]
+  [[ "$JAVA_HOME" == *"openjdk17"* ]]
+}
+
+@test "should have JAVA_HOME pointing to valid JDK" {
+  run "$JAVA_HOME/bin/java" -version
+  [ "$status" -eq 0 ]
+}
