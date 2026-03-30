@@ -26,6 +26,7 @@ ENV IMAGE_VERSION=$IMAGE_VERSION
 ENV PIP_BREAK_SYSTEM_PACKAGES 1
 ENV JAVA_17_HOME /opt/java/openjdk17
 ENV JAVA_21_HOME /opt/java/openjdk21
+ENV JAVA_HOME $JAVA_17_HOME
 
 # renovate: datasource=maven depName=org.owasp:dependency-check-maven versioning=maven
 ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="8.3.1"
