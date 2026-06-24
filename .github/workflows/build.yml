@@ -21,7 +21,7 @@ jobs:
       DOCKER_IMAGE_NAME: cloudtooling/dev-buildbox-base
       VERSION_FILE: config_base.json
     steps: &container-build
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Write version vars
         id: version-vars
@@ -113,7 +113,7 @@ jobs:
       - Base-Container
       - Container
     steps: &container-build
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup Environment
         id: setup-env
