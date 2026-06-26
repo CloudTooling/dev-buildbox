@@ -7,7 +7,7 @@ FROM bats/bats:1.13.0 as bats-cli
 FROM ghcr.io/helmfile/helmfile:v1.6.0 as helmfile
 FROM gitlab/glab:v1.102.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
-FROM cloudtooling/dev-buildbox-base:0.1.37
+FROM cloudtooling/dev-buildbox-base:0.1.39
 
 ARG BUILD_DATE
 ARG IMAGE_VERSION
