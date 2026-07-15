@@ -23,10 +23,10 @@ LABEL org.opencontainers.image.authors='Martin Reinhardt (martin@m13t.de)' \
 ENV BUILD_DATE=$BUILD_DATE
 ENV IMAGE_VERSION=$IMAGE_VERSION
 
-ENV PIP_BREAK_SYSTEM_PACKAGES 1
-ENV JAVA_17_HOME /opt/java/openjdk17
-ENV JAVA_21_HOME /opt/java/openjdk21
-ENV JAVA_HOME $JAVA_17_HOME
+ENV PIP_BREAK_SYSTEM_PACKAGES="1"
+ENV JAVA_17_HOME="/opt/java/openjdk17"
+ENV JAVA_21_HOME="/opt/java/openjdk21"
+ENV JAVA_HOME="$JAVA_17_HOME"
 
 # renovate: datasource=maven depName=org.owasp:dependency-check-maven versioning=maven
 ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="8.3.1"
@@ -52,7 +52,7 @@ RUN mkdir -p $JAVA_21_HOME
 COPY --from=jdk21 /opt/java/openjdk $JAVA_21_HOME
 
 # Create a script file sourced by both interactive and non-interactive bash shells
-ENV BASH_ENV /root/.bash_env
+ENV BASH_ENV=/root/.bash_env
 RUN touch "${BASH_ENV}"
 RUN echo '. "${BASH_ENV}"' >> ~/.bashrc
 
@@ -87,13 +87,17 @@ RUN apt-get update -y &&\
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # Add NodeJS & nvm
-RUN cd ~ &&\ 
+RUN cd ~ &&\
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | PROFILE="${BASH_ENV}" bash  &&\
-  . ~/.nvm/nvm.sh && echo node > .nvmrc && nvm install ${NODE_MAJOR_VERSION} && \
+  export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && echo node > .nvmrc && nvm install ${NODE_MAJOR_VERSION} && \
   # install changelog cli, yarn & json lint
   npm install -g conventional-changelog-cli jsonlint yarn &&\
   # nx cli
   npm add --global nx@latest &&\
+  # symlink node/npm/npx and all globally installed CLIs onto PATH so they work
+  # regardless of shell (sh/bash, interactive/non-interactive) or entrypoint,
+  # e.g. when GitLab CI overrides the image ENTRYPOINT to run job scripts
+  ln -sf "$NVM_DIR/versions/node/$(nvm version ${NODE_MAJOR_VERSION})"/bin/* /usr/local/bin/ &&\
   # clean up to slim image
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
