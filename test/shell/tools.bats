@@ -10,6 +10,16 @@
   [ "$status" -eq 0 ]
 }
 
+@test "should load conventional-changelog" {
+  run conventional-changelog --version
+  [ "$status" -eq 0 ]
+}
+
+@test "should load yarn" {
+  run yarn --version
+  [ "$status" -eq 0 ]
+}
+
 @test "should load mvn" {
   run mvn --version
   [ "$status" -eq 0 ]
