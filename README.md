@@ -7,7 +7,9 @@ Buildbox image for common dev use case
 
 Tools installed:
 
-* JDK 17 & 21, Maven
+* Java
+  * JDK 17, 21 & 25 (Default JDK 17)
+  * Maven
 * NodeJS, NVM, yarn, npm
 * git
 * glab CLI

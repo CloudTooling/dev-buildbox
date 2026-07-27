@@ -4,6 +4,7 @@ ARG JDK17_VERSION=17.0.19_10-jdk
 FROM eclipse-temurin:$JDK17_VERSION as jdk17
 FROM eclipse-temurin:21.0.11_10-jdk as jdk21
 FROM bats/bats:1.14.0 as bats-cli
+FROM eclipse-temurin:25.0.3_9-jdk as jdk25
 FROM ghcr.io/helmfile/helmfile:v1.7.1 as helmfile
 FROM gitlab/glab:v1.109.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
@@ -26,6 +27,7 @@ ENV IMAGE_VERSION=$IMAGE_VERSION
 ENV PIP_BREAK_SYSTEM_PACKAGES="1"
 ENV JAVA_17_HOME="/opt/java/openjdk17"
 ENV JAVA_21_HOME="/opt/java/openjdk21"
+ENV JAVA_25_HOME="/opt/java/openjdk25"
 ENV JAVA_HOME="$JAVA_17_HOME"
 
 # renovate: datasource=maven depName=org.owasp:dependency-check-maven versioning=maven
@@ -50,6 +52,10 @@ COPY --from=jdk17 /opt/java/openjdk $JAVA_17_HOME
 # Add JDK 21
 RUN mkdir -p $JAVA_21_HOME
 COPY --from=jdk21 /opt/java/openjdk $JAVA_21_HOME
+
+# Add JDK 25
+RUN mkdir -p $JAVA_25_HOME
+COPY --from=jdk25 /opt/java/openjdk $JAVA_25_HOME
 
 # Create a script file sourced by both interactive and non-interactive bash shells
 ENV BASH_ENV=/root/.bash_env
