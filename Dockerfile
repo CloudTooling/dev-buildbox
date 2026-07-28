@@ -80,8 +80,9 @@ RUN apt-get update -y &&\
   # Adding Maven
   apt install -y maven &&\
   # install ansible
-  apt-get install -y ansible &&\
-  python3 -m pip install molecule docker &&\
+  python3 -m pip install ansible molecule docker &&\
+  # Ansible documentation tooling
+  python3 -m pip install ansible-docsmith ansible-argument-spec-generator &&\
   # clean up to slim image
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
