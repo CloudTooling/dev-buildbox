@@ -15,7 +15,7 @@ Tools installed:
 * glab CLI
 * changelog-cli
 * kubectl, helm, helmfile, helmdocs
-* ansible, docker, shellcheck, yamllint
+* ansible (including [ansible-docsmith](https://github.com/foundata/ansible-docsmith)), docker, shellcheck, yamllint
 * jq, yq
 
 

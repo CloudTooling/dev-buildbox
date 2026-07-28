@@ -2,6 +2,15 @@
 
 @test "should load helm" {
   run helm version
+}
+
+@test "should load ansible" {
+  run ansible --version
+  [ "$status" -eq 0 ]
+}
+
+@test "should load ansible-docsmith" {
+  run ansible-docsmith --version
   [ "$status" -eq 0 ]
 }
 
