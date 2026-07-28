@@ -71,12 +71,12 @@ RUN apt-get update -y &&\
   # kubectl
   curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && mv kubectl /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl &&\
   # helm
-  curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash &&\
-  helm plugin install https://github.com/databus23/helm-diff &&\
-  helm plugin install https://github.com/jkroepke/helm-secrets &&\
-  helm plugin install https://github.com/hypnoglow/helm-s3 &&\
-  helm plugin install https://github.com/aslafy-z/helm-git &&\
-  helm plugin install https://github.com/helm-unittest/helm-unittest.git &&\
+  curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash &&\
+  helm plugin install https://github.com/databus23/helm-diff --verify=false &&\
+  helm plugin install https://github.com/jkroepke/helm-secrets --verify=false &&\
+  helm plugin install https://github.com/hypnoglow/helm-s3 --verify=false &&\
+  helm plugin install https://github.com/aslafy-z/helm-git --verify=false &&\
+  helm plugin install https://github.com/helm-unittest/helm-unittest.git --verify=false &&\
   # Adding Maven
   apt install -y maven &&\
   # install ansible

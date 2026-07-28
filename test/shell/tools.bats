@@ -1,5 +1,10 @@
 #!/usr/bin/env bats
 
+@test "should load helm" {
+  run helm version
+  [ "$status" -eq 0 ]
+}
+
 @test "should load node" {
   run node --version
   [ "$status" -eq 0 ]
