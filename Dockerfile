@@ -31,7 +31,7 @@ ENV JAVA_25_HOME="/opt/java/openjdk25"
 ENV JAVA_HOME="$JAVA_17_HOME"
 
 # renovate: datasource=maven depName=org.owasp:dependency-check-maven versioning=maven
-ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="8.3.1"
+ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="8.4.3"
 
 # renovate: datasource=github-tags depName=google/go-containerregistry extractVersion=^v(?<version>.*)$
 ARG GCR_TOOLS_VERSION="0.20.6"
