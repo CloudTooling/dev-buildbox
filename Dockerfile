@@ -34,7 +34,7 @@ ENV JAVA_HOME="$JAVA_17_HOME"
 ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="8.3.1"
 
 # renovate: datasource=github-tags depName=google/go-containerregistry extractVersion=^v(?<version>.*)$
-ARG GCR_TOOLS_VERSION="0.20.6"
+ARG GCR_TOOLS_VERSION="0.20.8"
 
 # renovate: datasource=github-tags depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
 ARG KUBECTL_VERSION="1.34.10"
