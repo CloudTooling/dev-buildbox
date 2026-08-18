@@ -43,7 +43,7 @@ ARG KUBECTL_VERSION="1.36.3"
 ARG NODE_MAJOR_VERSION="24.19.0"
 
 # renovate: datasource=github-tags depName=nvm-sh/nvm
-ARG NVM_VERSION="0.40.6"
+ARG NVM_VERSION="0.40.7"
 
 # Add JDK 17
 RUN mkdir -p $JAVA_17_HOME
