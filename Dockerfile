@@ -88,7 +88,7 @@ RUN apt-get update -y &&\
   python3 -m pip install ansible-docsmith ansible-argument-spec-generator &&\
   # git cliff for changelog generation
   curl -LO "https://github.com/orhun/git-cliff/releases/download/v${GIT_CLIFF_VERSION}/git-cliff-${GIT_CLIFF_VERSION}-x86_64-unknown-linux-gnu.tar.gz" &&\
-  tar -zxvf "git-cliff-${GIT_CLIFF_VERSION}-x86_64-unknown-linux-gnu.tar.gz" -C /usr/local/bin/ &&\
+  tar -zxvf "git-cliff-${GIT_CLIFF_VERSION}-x86_64-unknown-linux-gnu.tar.gz" -C /usr/local/bin/ --strip-components=1 "git-cliff-${GIT_CLIFF_VERSION}/git-cliff" &&\
   rm "git-cliff-${GIT_CLIFF_VERSION}-x86_64-unknown-linux-gnu.tar.gz" &&\
   # clean up to slim image
   apt-get clean autoclean && apt-get autoremove --yes && rm -rf /var/lib/{apt,dpkg,cache,log}/

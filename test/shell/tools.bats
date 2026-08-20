@@ -29,6 +29,15 @@
   [ "$status" -eq 0 ]
 }
 
+@test "should load git-cliff" {
+  run git-cliff --version
+  [ "$status" -eq 0 ]
+}
+
+@test "should have git-cliff installed directly in /usr/local/bin" {
+  [ -x /usr/local/bin/git-cliff ]
+}
+
 @test "should load yarn" {
   run yarn --version
   [ "$status" -eq 0 ]
