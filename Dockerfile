@@ -37,7 +37,7 @@ ARG MAVEN_OWASP_DEPENDENCY_CHECK_PLUGIN_VERSION="13.0.0"
 ARG GCR_TOOLS_VERSION="0.21.9"
 
 # renovate: datasource=github-tags depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
-ARG KUBECTL_VERSION="1.36.3"
+ARG KUBECTL_VERSION="1.36.4"
 
 # renovate: datasource=docker depName=node
 ARG NODE_MAJOR_VERSION="24.19.0"
