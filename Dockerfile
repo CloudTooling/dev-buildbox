@@ -4,7 +4,7 @@ ARG JDK17_VERSION=17.0.19_10-jdk
 FROM eclipse-temurin:$JDK17_VERSION as jdk17
 FROM eclipse-temurin:21.0.11_10-jdk as jdk21
 FROM bats/bats:1.14.0 as bats-cli
-FROM eclipse-temurin:25.0.3_9-jdk as jdk25
+FROM eclipse-temurin:25.0.4_7-jdk as jdk25
 FROM ghcr.io/helmfile/helmfile:v1.7.4 as helmfile
 FROM gitlab/glab:v1.114.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
