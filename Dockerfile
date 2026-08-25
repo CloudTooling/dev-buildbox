@@ -6,7 +6,7 @@ FROM eclipse-temurin:21.0.12_8-jdk as jdk21
 FROM bats/bats:1.14.0 as bats-cli
 FROM eclipse-temurin:25.0.4_7-jdk as jdk25
 FROM ghcr.io/helmfile/helmfile:v1.7.4 as helmfile
-FROM gitlab/glab:v1.114.0 as glab-cli
+FROM gitlab/glab:v1.115.0 as glab-cli
 FROM jnorwood/helm-docs:v1.14.2 as helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.47
 
