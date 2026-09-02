@@ -1,13 +1,13 @@
 # renovate: datasource=docker depName=eclipse-temurin allowedVersions=<18.0.0
 ARG JDK17_VERSION=17.0.20_8-jdk
 
-FROM eclipse-temurin:$JDK17_VERSION as jdk17
-FROM eclipse-temurin:21.0.12_8-jdk as jdk21
-FROM bats/bats:1.14.0 as bats-cli
-FROM eclipse-temurin:25.0.4_7-jdk as jdk25
-FROM ghcr.io/helmfile/helmfile:v1.7.4 as helmfile
-FROM gitlab/glab:v1.116.0 as glab-cli
-FROM jnorwood/helm-docs:v1.14.2 as helm-docs
+FROM eclipse-temurin:$JDK17_VERSION AS jdk17
+FROM eclipse-temurin:21.0.12_8-jdk AS jdk21
+FROM bats/bats:1.14.0 AS bats-cli
+FROM eclipse-temurin:25.0.4_7-jdk AS jdk25
+FROM ghcr.io/helmfile/helmfile:v1.7.4 AS helmfile
+FROM gitlab/glab:v1.116.0 AS glab-cli
+FROM jnorwood/helm-docs:v1.14.2 AS helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.48
 
 ARG BUILD_DATE
