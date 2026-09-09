@@ -8,7 +8,7 @@ FROM eclipse-temurin:25.0.4_7-jdk AS jdk25
 FROM ghcr.io/helmfile/helmfile:v1.7.4 AS helmfile
 FROM gitlab/glab:v1.117.0 AS glab-cli
 FROM jnorwood/helm-docs:v1.14.2 AS helm-docs
-FROM cloudtooling/dev-buildbox-base:0.1.48
+FROM cloudtooling/dev-buildbox-base:0.1.49
 
 ARG BUILD_DATE
 ARG IMAGE_VERSION
