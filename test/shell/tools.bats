@@ -53,6 +53,16 @@
   [ "$status" -eq 0 ]
 }
 
+@test "should load glab-cli" {
+  run glab --version
+  [ "$status" -eq 0 ]
+}
+
+@test "should load glab-docs" {
+  run glab-docs --version
+  [ "$status" -eq 0 ]
+}
+
 @test "should have JAVA_HOME set to JDK 17" {
   [ -n "$JAVA_HOME" ]
   [[ "$JAVA_HOME" == *"openjdk17"* ]]

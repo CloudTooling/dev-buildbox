@@ -7,6 +7,7 @@ FROM bats/bats:1.14.0 AS bats-cli
 FROM eclipse-temurin:25.0.4_7-jdk AS jdk25
 FROM ghcr.io/helmfile/helmfile:v1.7.4 AS helmfile
 FROM gitlab/glab:v1.117.0 AS glab-cli
+FROM m13t/glab-docs:0.3.0 AS glab-docs
 FROM jnorwood/helm-docs:v1.14.2 AS helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.49
 
@@ -120,6 +121,9 @@ ADD --chown=root:root src/docker/entrypoint.sh /usr/local/bin/
 
 # Copy Glab CLI
 COPY --from=glab-cli /usr/bin/glab /usr/local/bin/glab
+
+# Copy Glab Docs CLI
+COPY --from=glab-docs /usr/bin/glab-docs /usr/local/bin/glab-docs
 
 # Copy Helmfile CLI
 COPY --from=helmfile /usr/local/bin/helmfile /usr/local/bin/helmfile
