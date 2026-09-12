@@ -12,8 +12,9 @@ Tools installed:
   * Maven
 * NodeJS, NVM, yarn, npm
 * git
-* glab CLI
-* changelog-cli
+* [glab CLI](https://docs.gitlab.com/cli/)
+* [Glab Docs CLI](https://github.com/m13tLabs/glab-docs)
+* changelog-cli & git cliff
 * kubectl, helm, helmfile, helmdocs
 * ansible (including [ansible-docsmith](https://github.com/foundata/ansible-docsmith)), docker, shellcheck, yamllint
 * jq, yq
