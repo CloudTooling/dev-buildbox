@@ -47,7 +47,7 @@ ARG NODE_MAJOR_VERSION="24.21.0"
 ARG NVM_VERSION="0.40.7"
 
 # renovate: datasource=github-tags depName=orhun/git-cliff
-ARG GIT_CLIFF_VERSION="2.14.1"
+ARG GIT_CLIFF_VERSION="2.14.2"
 
 # Add JDK 17
 RUN mkdir -p $JAVA_17_HOME
