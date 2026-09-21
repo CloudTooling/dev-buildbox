@@ -7,7 +7,7 @@ FROM bats/bats:1.14.0 AS bats-cli
 FROM eclipse-temurin:25.0.4_7-jdk AS jdk25
 FROM ghcr.io/helmfile/helmfile:v1.8.0 AS helmfile
 FROM gitlab/glab:v1.118.0 AS glab-cli
-FROM m13t/glab-docs:0.3.0 AS glab-docs
+FROM m13t/glab-docs:0.4.0 AS glab-docs
 FROM jnorwood/helm-docs:v1.14.2 AS helm-docs
 FROM cloudtooling/dev-buildbox-base:0.1.50
 
