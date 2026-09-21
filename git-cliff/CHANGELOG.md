@@ -1,31 +1,19 @@
 
-## [1.12.0](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.11.2...v1.12.0) (2026-09-12)
+## [1.12.1](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.12.0...v1.12.1) (2026-09-21)
 
 ### Dependency Updates
 
-* **deps:** Update gitlab/glab docker tag to v1.116.0 ([a7cb3db](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/a7cb3db509f2c256ca1acfa45a7e1c7a6a47908a))
+* **deps:** Update ghcr.io/helmfile/helmfile docker tag to v1.8.0 ([4641e04](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/4641e04c0e52a343149aaa27f0a840c7f42fc0d7))
 
-* **deps:** Update dependency orhun/git-cliff to v2.14.1 ([7ba4df2](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/7ba4df22c361e3fa4d0329170368a6012d5c3051))
+* **deps:** Update gitlab/glab docker tag to v1.118.0 ([72528d2](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/72528d21cf9fe51706436c67a7355c3c7dbae5ee))
 
-* **deps:** Update dependency google/go-containerregistry to v0.22.1 ([6dbe582](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/6dbe582fb7d09e0f198c1cc556ae9964b3555df9))
+* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.50 ([547aa16](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/547aa16e12668fc366b81cb73b693551c61c136b))
 
-* **deps:** Update gitlab/glab docker tag to v1.117.0 ([196c057](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/196c057297c627a63f2de18e4ab1578679deeec1))
+* **deps:** Update dependency orhun/git-cliff to v2.14.2 ([95adf51](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/95adf51556d4739f34ab618ba7c8ec4c85c7aae6))
 
-* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.49 ([e135ed9](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/e135ed968f5e0f72f2a504a29e78c05a15a86753))
+* **deps:** Update dependency nvm-sh/nvm to v0.40.8 ([ed90d3b](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/ed90d3bdebfa8ce6890a6dfe13928fc352987bdf))
 
-* **deps:** Update node.js to v24.21.0 ([d181c74](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/d181c740365e97f7d79566cbd5d5f0e1494c7c39))
-
-
-
-### Documentation
-
-* Update README ([39af3b9](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/39af3b93bfaf0e52ebd1dd3f4c6318cf183bfd42))
-
-
-
-### Features
-
-* **Gitlab:** Adding glab-docs CLI ([b7efdc8](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/b7efdc87a1788a83777e66b04edcb326f813fadc))
+* **deps:** Update m13t/glab-docs docker tag to v0.4.0 ([51ff8c7](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/51ff8c7c9e3eb7fd38659c68920c76c5702c1267))
 
 
 
