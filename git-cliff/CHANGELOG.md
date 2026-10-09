@@ -1,15 +1,21 @@
 
-## [1.12.3](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.12.2...v1.12.3) (2026-09-25)
+## [1.12.4](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.12.3...v1.12.4) (2026-10-09)
 
 ### Dependency Updates
 
-* **deps:** Update gitlab/glab docker tag to v1.119.0 ([3a8127c](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/3a8127c32b69c4953d94dfb1ea1f116f0611f5a6))
+* **deps:** Update gitlab/glab docker tag to v1.120.0 ([9d41d39](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/9d41d39bc281dfff9dc8796cab97f363d6d96930))
 
-* **deps:** Update dependency kubernetes/kubernetes to v1.37.1 ([922de41](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/922de413f3ac821981aa4f265c4a0fca1fb98def))
+* **deps:** Update ghcr.io/helmfile/helmfile docker tag to v1.8.1 ([f81646e](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/f81646ef0c24821ea105f5114e7a89dd0d2b73e3))
 
-* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.51 ([7536a22](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/7536a225e1f1dda6c9e18a7ad2e23de60ae3df6c))
+* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.52 ([1c7eb05](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/1c7eb052857188c064b01c26ebdbde428c025d40))
 
-* **deps:** Update glab-docs to 1.0.0 ([45ed5e2](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/45ed5e25b33e92a40c7738498315789f28ee83b6))
+* **deps:** Update gitlab/glab docker tag to v1.121.0 ([e4a0d19](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/e4a0d19ee40aae233cd7292ca13554227c2a9c14))
+
+* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.53 ([f20075b](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/f20075b0c33e67595b5f67c2235ac5ea32e860dd))
+
+* **deps:** Update m13t/glab-docs docker tag to v1.1.0 ([cf7d5d4](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/cf7d5d4f2ce8ddbfedc6446c91dabc78510d38ec))
+
+* **deps:** Update gitlab/glab docker tag to v1.122.0 ([c7d792b](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/c7d792b990b47e991cf379bfde9b64e1a6de15a3))
 
 
 
