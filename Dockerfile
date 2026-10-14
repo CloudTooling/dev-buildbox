@@ -9,7 +9,7 @@ FROM ghcr.io/helmfile/helmfile:v1.8.1 AS helmfile
 FROM gitlab/glab:v1.123.0 AS glab-cli
 FROM m13t/glab-docs:1.1.1 AS glab-docs
 FROM jnorwood/helm-docs:v1.14.2 AS helm-docs
-FROM cloudtooling/dev-buildbox-base:0.1.53
+FROM cloudtooling/dev-buildbox-base:0.1.54
 
 ARG BUILD_DATE
 ARG IMAGE_VERSION
