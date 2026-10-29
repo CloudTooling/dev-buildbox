@@ -41,7 +41,7 @@ ARG GCR_TOOLS_VERSION="0.22.1"
 ARG KUBECTL_VERSION="1.37.2"
 
 # renovate: datasource=docker depName=node
-ARG NODE_MAJOR_VERSION="24.22.1"
+ARG NODE_MAJOR_VERSION="24.22.2"
 
 # renovate: datasource=github-tags depName=nvm-sh/nvm
 ARG NVM_VERSION="0.40.8"
