@@ -1,23 +1,21 @@
 
-## [1.12.5](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.12.4...v1.12.5) (2026-10-21)
+## [1.13.0](https://github.com/ContinuousSecurityTooling/keycloak-auditor/compare/v1.12.5...v1.13.0) (2026-10-29)
 
 ### Dependency Updates
 
-* **deps:** Update gitlab/glab docker tag to v1.123.0 ([2e79066](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/2e79066db51773f5c96c7bffc17e00852579ce8a))
+* **deps:** Update node.js to v24.22.1 ([73a393d](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/73a393db6312f5c7e34ba7133b57a5bcc4eebfcf))
 
-* **deps:** Update m13t/glab-docs docker tag to v1.1.1 ([1615c2d](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/1615c2d56437c714d7cf2100868a74764cc5d8ad))
+* **deps:** Update gitlab/glab docker tag to v1.125.0 ([a95a4b2](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/a95a4b27b4d8c56f6bd27df3c0ced0ff69765b22))
 
-* **deps:** Update m13t/glab-docs docker tag to v1.2.0 ([77a766a](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/77a766a9c32ded30d572d66d0ed81c8c3f2d4b33))
+* **deps:** Update dependency kubernetes/kubernetes to v1.37.2 ([8094239](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/8094239d48f1548891d37d17eb8bbe441b60606e))
 
-* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.54 ([ea95be6](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/ea95be6eed9f0176c9d609b9eac846c8376afc5f))
+* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.56 ([a8b14b3](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/a8b14b3b307793e866892f5f575b344649352895))
 
-* **deps:** Update node.js to v24.22.0 ([76f7062](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/76f706225a4316f3f1b391fcd6eff672c09f38c4))
+* **deps:** Update gitlab/glab docker tag to v1.126.0 ([7b3327d](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/7b3327dadf6cc8706341c181b9c48f0de063112b))
 
-* **deps:** Update ghcr.io/helmfile/helmfile docker tag to v1.8.2 ([2e90f72](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/2e90f7246157396402ea46da292785a26b9d977f))
+* **deps:** Update node.js to v24.22.2 ([660fa0c](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/660fa0cd1968907592b27d3f38655ff40714da6d))
 
-* **deps:** Update gitlab/glab docker tag to v1.124.0 ([dfc6e6d](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/dfc6e6d75055831c602f7ae3a655335716bb8acb))
-
-* **deps:** Update cloudtooling/dev-buildbox-base docker tag to v0.1.55 ([5d28dff](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/5d28dff9f6fd3ea5714639bf7e5dafcb32e71c1a))
+* **deps:** Update node.js to v26 ([ddcd7eb](https://github.com/ContinuousSecurityTooling/keycloak-auditor/commit/ddcd7ebff63fba1a3bb2fd51b72fe3ee75a7958d))
 
 
 
