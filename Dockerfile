@@ -44,7 +44,7 @@ ARG KUBECTL_VERSION="1.37.2"
 ARG NODE_MAJOR_VERSION="26.13.0"
 
 # renovate: datasource=github-tags depName=nvm-sh/nvm
-ARG NVM_VERSION="0.40.8"
+ARG NVM_VERSION="0.41.0"
 
 # renovate: datasource=github-tags depName=orhun/git-cliff
 ARG GIT_CLIFF_VERSION="2.14.2"
